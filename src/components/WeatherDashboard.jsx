@@ -27,7 +27,7 @@ export default function WeatherDashboard() {
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
-    document.body.className = darkMode ? "bg-dark text-white" : "bg-light text-dark";
+    document.body.className = darkMode ? "bg-dark text-white container" : "bg-light text-dark container";
   }, [darkMode]);
 
   const fetchWeather = async (cityName) => {
@@ -100,6 +100,7 @@ export default function WeatherDashboard() {
     ()=>({
         chart: {
             backgroundColor: darkMode ? "#2c2c2c" : "#ffffff",
+            type: "line"
         },
         title: { text: "Temperature Forecast (Next 24 Hours)",style: { color: darkMode ? "#ffffff" : "#000000" } },
         credits: {
@@ -107,6 +108,9 @@ export default function WeatherDashboard() {
         },
         xAxis: { categories: forecastTemData[cities[0]]?.map((data) => data.dt_txt.split(" ")[1]) || [],labels: { style: { color: darkMode ? "#ffffff" : "#000000" } }, },
         yAxis: { labels: { style: { color: darkMode ? "#ffffff" : "#000000" } },title: { text: "Temperature (°F)",style: { color: darkMode ? "#ffffff" : "#000000" } } },
+        tooltip: {
+            pointFormat: "<b>{point.y}</b>",
+        },
         series: cities.map((city) => ({
           name: city,
           data: forecastTemData[city]?.map((data) =>
@@ -129,6 +133,9 @@ export default function WeatherDashboard() {
         title: { text: "Rain Probability (Next Five Days)",style: { color: darkMode ? "#ffffff" : "#000000" } },
         xAxis: { categories: forecastData?.map((data) => data.dt_txt.split(" ")[0]) ,labels: { style: { color: darkMode ? "#ffffff" : "#000000" } },},
         yAxis: { title: { text: "Probability (%)" ,style: { color: darkMode ? "#ffffff" : "#000000" }}, labels: { style: { color: darkMode ? "#ffffff" : "#000000" } }},
+        tooltip: {
+            pointFormat: "<b>{point.y}</b>",
+        },
         series: [
           {
             name: "Rain Probability",
@@ -150,6 +157,9 @@ export default function WeatherDashboard() {
         title: { text: "Humidity Levels (Next Five Days)",style: { color: darkMode ? "#ffffff" : "#000000" } },
         xAxis: { categories: forecastData?.map((data) => data.dt_txt.split(" ")[0]),labels: { style: { color: darkMode ? "#ffffff" : "#000000" } }, },
         yAxis: { title: { text: "Humidity (%)",style: { color: darkMode ? "#ffffff" : "#000000" } }, labels: { style: { color: darkMode ? "#ffffff" : "#000000" } } },
+        tooltip: {
+            pointFormat: "<b>{point.y}</b>",
+        },
         series: [
           {
             name: "Humidity",
@@ -170,6 +180,9 @@ export default function WeatherDashboard() {
     title: { text: "Wind Speed (Next Five Days)",style: { color: darkMode ? "#ffffff" : "#000000" } },
     xAxis: { categories: forecastData?.map((data) => data.dt_txt.split(" ")[0]) ,labels: { style: { color: darkMode ? "#ffffff" : "#000000" } }, },
     yAxis: { title: { text: "Wind Speed (m/s)" },style: { color: darkMode ? "#ffffff" : "#000000" } },
+    tooltip: {
+        pointFormat: "<b>{point.y}</b>",
+    },
     series: [
       {
         name: "Wind Speed",
@@ -196,6 +209,7 @@ export default function WeatherDashboard() {
     tooltip: {
       pointFormat: "<b>{point.percentage:.2f}%</b>",
     },
+    yAxis: { title: { text: "" },style: { color: darkMode ? "#ffffff" : "#000000" } },
     series: [
       {
         name: "Occurrences",
@@ -226,7 +240,7 @@ export default function WeatherDashboard() {
   };
 
   return (
-    <div className={`container mt-4 ${darkMode ? "bg-dark text-white" : "bg-light text-dark"}`}>
+    <div className={` mt-4 ${darkMode ? "bg-dark text-white" : "bg-light text-dark"}`}>
       <h1 className="text-center">Weather Analytics Dashboard</h1>
       <div className="text-center mb-3">
         <button className="btn btn-secondary" onClick={() => setDarkMode(!darkMode)}>
