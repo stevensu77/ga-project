@@ -21,4 +21,17 @@ The **Weather Analytics Dashboard** is a web application that fetches real-time 
 - **Line Chart** → Hourly temperature forecast  
 - **Bar Chart** → Rain probability, humidity levels, wind speed  
 - **Pie Chart** → Breakdown of weather conditions (sunny, rainy, etc.)  
+## Installation & Setup 🚀
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/stevensu77/ga-project.git
+2. Install npm package:
+   ```sh
+   npm install
+3. Play with the local dev environment.
+   ```sh
+   npm run dev
+4. Build the project.
+   ```sh
+   npm run build
 
