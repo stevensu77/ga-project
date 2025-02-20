@@ -3,7 +3,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const API_KEY = "b6f362efc9161afa6841bf015cb7e63e";
+const API_KEY = "b6f362efc9161afa6841bf015cb7e63e"; // Since this is not the product code, we will use other method to get and keep our API key.
 
 export default function WeatherDashboard() {
   const [city, setCity] = useState("");
